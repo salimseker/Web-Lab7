@@ -9,3 +9,15 @@ body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
 }
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* NavLink adds the "active" class to the link matching the current URL */
+.navbar-links a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
