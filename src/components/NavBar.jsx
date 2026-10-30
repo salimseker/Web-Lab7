@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../context/AuthContext.jsx'
 import { selectItemCount, useCartStore } from '../store/cartStore.js'
 
-function NavBar() {
+function NavBar({ isDark, onToggleTheme }) {
   const { user, logout } = useAuth()
   // Primitive selector: NavBar re-renders only when the count changes, not on every cart update.
   const itemCount = useCartStore(selectItemCount)
@@ -31,6 +31,9 @@ function NavBar() {
       </nav>
 
       <div className="navbar-auth">
+        <button type="button" onClick={onToggleTheme} aria-pressed={isDark}>
+          {isDark ? '☀️ Light' : '🌙 Dark'}
+        </button>
         {user ? (
           <>
             <span className="navbar-user">{user.username}</span>

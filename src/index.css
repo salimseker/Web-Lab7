@@ -10,6 +10,50 @@ body {
   line-height: 1.5;
 }
 
+/* Theme: the class on the .app wrapper sets the custom properties, everything else reads them. */
+.theme-light {
+  --color-bg: #ffffff;
+  --color-surface: #f3f4f6;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-border: #d1d5db;
+  --color-link: #1d4ed8;
+  color-scheme: light;
+}
+
+.theme-dark {
+  --color-bg: #111827;
+  --color-surface: #1f2937;
+  --color-text: #f3f4f6;
+  --color-muted: #9ca3af;
+  --color-border: #374151;
+  --color-link: #93c5fd;
+  color-scheme: dark;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.app a {
+  color: var(--color-link);
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.navbar,
+.footer {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
 .navbar {
   display: flex;
   flex-wrap: wrap;
