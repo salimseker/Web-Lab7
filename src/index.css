@@ -57,6 +57,22 @@ body {
   height: auto;
 }
 
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 320px;
+}
+
+.login-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: #c0392b;
+}
+
 .product-pager {
   display: flex;
   gap: 1rem;
