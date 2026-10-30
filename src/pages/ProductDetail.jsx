@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router'
 import { HttpError, fetchProduct } from '../api/productsApi.js'
 import { useFetch } from '../hooks/useFetch.js'
+import { useCartStore } from '../store/cartStore.js'
 
 const NOT_FOUND_STATUS = 404
 
@@ -9,6 +10,7 @@ function ProductDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { loading, error, data: product } = useFetch((signal) => fetchProduct(id, signal), [id])
+  const addItem = useCartStore((state) => state.addItem)
 
   // Convert before doing arithmetic, otherwise "3" + 1 would give "31".
   const numericId = Number(id)
@@ -36,6 +38,9 @@ function ProductDetail() {
           <p className="product-category">{product.category}</p>
           <p>{product.description}</p>
           <p className="product-price">${product.price.toFixed(2)}</p>
+          <button type="button" onClick={() => addItem(product)}>
+            Add to cart
+          </button>
         </div>
       </article>
     )

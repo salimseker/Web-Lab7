@@ -1,9 +1,12 @@
 import { startTransition } from 'react'
 import { NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../context/AuthContext.jsx'
+import { selectItemCount, useCartStore } from '../store/cartStore.js'
 
 function NavBar() {
   const { user, logout } = useAuth()
+  // Primitive selector: NavBar re-renders only when the count changes, not on every cart update.
+  const itemCount = useCartStore(selectItemCount)
   const navigate = useNavigate()
 
   // React Router v8 applies navigation inside a transition. Logging out in the same transition
@@ -24,7 +27,7 @@ function NavBar() {
           Home
         </NavLink>
         <NavLink to="/products">Products</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
+        <NavLink to="/cart">Cart ({itemCount})</NavLink>
       </nav>
 
       <div className="navbar-auth">
