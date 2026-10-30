@@ -10,14 +10,24 @@ body {
   line-height: 1.5;
 }
 
-.navbar-links {
+.navbar {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   padding: 1rem;
 }
 
+.navbar-links,
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 /* NavLink adds the "active" class to the link matching the current URL */
-.navbar-links a.active {
+.navbar a.active {
   font-weight: bold;
   text-decoration: underline;
 }

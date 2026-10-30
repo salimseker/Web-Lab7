@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router'
 import Layout from './components/Layout.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Home from './pages/Home.jsx'
 import ProductList from './pages/ProductList.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
@@ -16,7 +17,14 @@ function App() {
           <Route index element={<ProductList />} />
           <Route path=":id" element={<ProductDetail />} />
         </Route>
-        <Route path="cart" element={<Cart />} />
+        <Route
+          path="cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Route>

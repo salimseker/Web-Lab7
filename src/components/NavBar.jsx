@@ -1,6 +1,21 @@
-import { NavLink } from 'react-router'
+import { startTransition } from 'react'
+import { NavLink, useNavigate } from 'react-router'
+import { useAuth } from '../context/AuthContext.jsx'
 
 function NavBar() {
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
+
+  // React Router v8 applies navigation inside a transition. Logging out in the same transition
+  // makes both updates render together; otherwise a mounted protected page would see
+  // "no user" first and ProtectedRoute would redirect to /login instead of home.
+  function handleLogout() {
+    startTransition(() => {
+      navigate('/')
+      logout()
+    })
+  }
+
   return (
     <header className="navbar">
       <nav className="navbar-links">
@@ -10,8 +25,20 @@ function NavBar() {
         </NavLink>
         <NavLink to="/products">Products</NavLink>
         <NavLink to="/cart">Cart</NavLink>
-        <NavLink to="/login">Login</NavLink>
       </nav>
+
+      <div className="navbar-auth">
+        {user ? (
+          <>
+            <span className="navbar-user">{user.username}</span>
+            <button type="button" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <NavLink to="/login">Login</NavLink>
+        )}
+      </div>
     </header>
   )
 }
