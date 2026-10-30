@@ -44,3 +44,20 @@ body {
   width: 100%;
   height: auto;
 }
+
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.product-detail img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-pager {
+  display: flex;
+  gap: 1rem;
+}
